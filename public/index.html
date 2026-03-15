@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beats — Strudel Workstation</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header>
+    <h1>Beats</h1>
+    <div id="status" class="disconnected">Disconnected</div>
+  </header>
+
+  <main>
+    <div class="controls">
+      <select id="track-select">
+        <option value="">— select track —</option>
+      </select>
+      <button id="play-btn">Play</button>
+      <button id="stop-btn">Stop</button>
+    </div>
+
+    <pre id="code-display"><code>// Select a track to begin...</code></pre>
+
+    <div id="error" class="error" hidden></div>
+  </main>
+
+  <script type="importmap">
+  {
+    "imports": {
+      "@strudel/web": "https://unpkg.com/@strudel/web@1.3.0/dist/index.mjs"
+    }
+  }
+  </script>
+  <script type="module" src="/app.js"></script>
+</body>
+</html>

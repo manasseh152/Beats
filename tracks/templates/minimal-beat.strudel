@@ -1,0 +1,6 @@
+// Minimal Beat — basic drum pattern
+// Try changing the pattern or adding .bank("RolandTR808")
+
+s("bd sd:1 bd [sd:1 hh]")
+  .bank("RolandTR909")
+  .cpm(90)

@@ -1,0 +1,124 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #0a0a0f;
+  color: #e0e0e0;
+  font-family: "JetBrains Mono", "Fira Code", "Cascadia Code", monospace;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #1a1a2e;
+}
+
+header h1 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #8b5cf6;
+}
+
+#status {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+#status.connected {
+  background: #064e3b;
+  color: #34d399;
+}
+
+#status.disconnected {
+  background: #450a0a;
+  color: #f87171;
+}
+
+main {
+  flex: 1;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.controls {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+select {
+  flex: 1;
+  background: #111122;
+  color: #e0e0e0;
+  border: 1px solid #2a2a4a;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 0.875rem;
+}
+
+select:focus {
+  outline: none;
+  border-color: #8b5cf6;
+}
+
+button {
+  background: #8b5cf6;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1.25rem;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+button:hover {
+  background: #7c3aed;
+}
+
+#stop-btn {
+  background: #1a1a2e;
+  border: 1px solid #2a2a4a;
+}
+
+#stop-btn:hover {
+  background: #2a2a4a;
+}
+
+#code-display {
+  flex: 1;
+  background: #111122;
+  border: 1px solid #1a1a2e;
+  border-radius: 8px;
+  padding: 1.25rem;
+  overflow: auto;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  color: #c4b5fd;
+}
+
+.error {
+  background: #450a0a;
+  border: 1px solid #7f1d1d;
+  color: #fca5a5;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+}

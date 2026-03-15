@@ -1,0 +1,27 @@
+// Ambient — lush pads with reverb and delay
+// Try changing chord voicings or adding .slow(2)
+
+stack(
+  // pad
+  note("<C3 Eb3 G3 Bb3>/2")
+    .sound("sawtooth")
+    .cutoff(800)
+    .attack(0.5)
+    .decay(1)
+    .sustain(0.6)
+    .release(2)
+    .room(0.9)
+    .roomsize(8)
+    .gain(0.5),
+
+  // shimmer
+  note("<G4 Bb4 C5 Eb5>/4")
+    .sound("triangle")
+    .cutoff(2000)
+    .attack(0.3)
+    .release(1.5)
+    .delay(0.5)
+    .delaytime(0.375)
+    .room(0.8)
+    .gain(0.25)
+).cpm(60)

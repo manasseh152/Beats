@@ -1,0 +1,28 @@
+// Drum Pattern — Euclidean rhythms + polyrhythm
+// e(beats, steps, offset) distributes hits evenly
+// Try: e(5,8), e(7,12), e(3,8,1)
+
+stack(
+  // kick: 4-on-the-floor
+  s("bd")
+    .e(4, 16)
+    .bank("RolandTR808")
+    .gain(1),
+
+  // snare: backbeat with ghost notes
+  s("~ sd:1 ~ sd:1")
+    .bank("RolandTR808")
+    .gain(0.9),
+
+  // hi-hat: Euclidean pattern
+  s("hh")
+    .e(7, 16)
+    .bank("RolandTR808")
+    .gain(0.6),
+
+  // rim: offset Euclidean
+  s("rim")
+    .e(3, 8, 2)
+    .bank("RolandTR808")
+    .gain(0.5)
+).cpm(110)

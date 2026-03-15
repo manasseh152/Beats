@@ -1,0 +1,17 @@
+{
+  "name": "beats",
+  "module": "server.ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "bun run --watch server.ts",
+    "new:sketch": "bun run scripts/new-track.ts sketches",
+    "new:track": "bun run scripts/new-track.ts wip"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}

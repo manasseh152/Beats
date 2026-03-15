@@ -1,0 +1,20 @@
+// Melodic — bass + melody with scale degrees
+// Try changing the scale: "C:minor", "D:dorian", "A:pentatonic"
+
+stack(
+  // melody
+  n("0 2 4 [7 5]")
+    .scale("C:minor")
+    .sound("sawtooth")
+    .cutoff(1200)
+    .decay(0.3)
+    .sustain(0.2),
+
+  // bass
+  n("0 ~ 0 ~")
+    .scale("C:minor")
+    .sound("sawtooth")
+    .octave(2)
+    .cutoff(600)
+    .gain(0.8)
+).cpm(80)

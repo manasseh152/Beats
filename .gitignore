@@ -1,0 +1,31 @@
+# dependencies
+node_modules/
+
+# output
+out/
+dist/
+*.tgz
+
+# logs
+logs/
+*.log
+
+# dotenv
+.env
+.env.*.local
+
+# caches
+.eslintcache
+.cache
+*.tsbuildinfo
+
+# IDE
+.idea/
+.DS_Store
+
+# Audio samples (too large for git)
+samples/*.wav
+samples/*.mp3
+samples/*.ogg
+samples/*.flac
+!samples/.gitkeep
