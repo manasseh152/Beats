@@ -1,0 +1,19 @@
+// Polyrhythm clash — layered Euclidean patterns at contrasting step counts
+stack(
+  s("bd(3,8)")
+    .gain(0.9),
+  s("sd:1(5,12)")
+    .gain(0.6),
+  s("hh(7,16)")
+    .gain(0.4),
+  s("cp(11,16)")
+    .gain(0.3),
+  n("0(3,8) 3(5,12)")
+    .scale("C:minor")
+    .sound("sawtooth")
+    .octave(3)
+    .cutoff(sine.range(300, 1500).slow(8))
+    .gain(0.4)
+    .room(0.2)
+).bank("RolandTR808")
+  .cpm(120)

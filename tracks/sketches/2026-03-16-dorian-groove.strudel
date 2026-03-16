@@ -1,0 +1,20 @@
+// Dorian groove — Euclidean rhythms and cycle alternation in D dorian
+stack(
+  s("bd(3,8)")
+    .bank("AkaiLinn"),
+  s("sd:1(5,8,2)")
+    .bank("AkaiLinn")
+    .gain(0.65),
+  s("hh(7,16)")
+    .bank("AkaiLinn")
+    .gain(0.4),
+  n("<0 2 3 5>(3,8)")
+    .scale("D:dorian")
+    .sound("sine")
+    .octave(3)
+    .cutoff(sine.range(400, 1600).slow(8))
+    .gain(0.5)
+    .room(0.25)
+    .delay(0.2)
+    .delaytime(0.139)
+).cpm(108)

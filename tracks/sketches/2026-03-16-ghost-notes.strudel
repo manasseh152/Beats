@@ -1,0 +1,12 @@
+// Ghost notes — subtle sample variants and random chance create a human-feel groove
+stack(
+  s("bd ~ bd:1 ~")
+    .gain("1 .6 .9 .5"),
+  s("~ sd:1 ~ sd:2")
+    .gain(".9 .7"),
+  s("hh:0 hh:2? hh:1 hh:3?")
+    .gain(".5 .3 .6 .25"),
+  s("[~ cp?] ~ [~ cp:1?] ~")
+    .gain(.35)
+).bank("RolandTR808")
+  .cpm(88)

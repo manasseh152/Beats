@@ -1,0 +1,27 @@
+// Space drum ritual — cavernous ViscoSpaceDrum textures with heavy effects
+stack(
+  s("bd ~ ~ bd:1 ~ ~ bd:2 ~")
+    .slow(2)
+    .gain(0.8)
+    .room(0.8)
+    .roomsize(8),
+  s("sd/2")
+    .gain(0.6)
+    .room(0.9)
+    .roomsize(10)
+    .delay(0.5)
+    .delaytime(0.23),
+  s("hh(3,8)")
+    .gain(0.35)
+    .distort(0.4)
+    .room(0.6)
+    .pan(sine.range(0.2, 0.8).slow(6)),
+  s("cp/4")
+    .gain(0.5)
+    .delay(0.7)
+    .delaytime(0.46)
+    .room(0.9)
+    .roomsize(9)
+    .distort(0.2)
+).bank("ViscoSpaceDrum")
+  .cpm(65)

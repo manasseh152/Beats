@@ -1,0 +1,36 @@
+// Pluck and pad — contrasting ADSR envelopes over gentle CR78 percussion
+stack(
+  s("bd ~ bd:1 ~")
+    .bank("RolandCR78")
+    .gain(0.7),
+  s("~ [~ sd] ~ sd")
+    .bank("RolandCR78")
+    .gain(0.5),
+  s("hh*4")
+    .bank("RolandCR78")
+    .gain(0.3),
+  n("0 4 7 11 7 4")
+    .scale("C:pentatonic")
+    .sound("triangle")
+    .octave(4)
+    .attack(0.005)
+    .decay(0.15)
+    .sustain(0.1)
+    .release(0.3)
+    .cutoff(2000)
+    .gain(0.4)
+    .delay(0.25)
+    .delaytime(0.208),
+  n("<0 4 7>")
+    .scale("C:pentatonic")
+    .sound("sine")
+    .octave(3)
+    .attack(0.8)
+    .decay(0.3)
+    .sustain(0.7)
+    .release(1.5)
+    .cutoff(sine.range(300, 900).slow(16))
+    .gain(0.3)
+    .room(0.5)
+    .roomsize(6)
+).cpm(72)

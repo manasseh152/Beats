@@ -1,0 +1,20 @@
+// Stereo field — panning, jux, and sine-modulated placement across the stereo image
+stack(
+  s("bd sd:1 bd [sd:1 bd]")
+    .pan(0.5),
+  s("hh*8")
+    .gain(".5 .3 .7 .3 .5 .3 .7 .3")
+    .pan(sine.range(0.2, 0.8).slow(4)),
+  s("cp/2")
+    .gain(0.6)
+    .jux(rev),
+  n("0 3 5 7")
+    .scale("C:minor")
+    .sound("triangle")
+    .octave(3)
+    .cutoff(1200)
+    .gain(0.4)
+    .pan(sine.range(0, 1).slow(8))
+    .room(0.3)
+).bank("RolandTR909")
+  .cpm(100)

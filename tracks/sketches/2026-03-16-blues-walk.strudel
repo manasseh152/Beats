@@ -1,0 +1,22 @@
+// Blues walk — gritty square-wave bassline over a CR78 shuffle
+stack(
+  s("bd ~ bd ~")
+    .bank("RolandCR78"),
+  s("~ sd ~ sd:1")
+    .bank("RolandCR78")
+    .gain(0.7),
+  s("hh [hh hh] hh [hh hh]")
+    .bank("RolandCR78")
+    .gain(0.45),
+  n("<0 3 5 6 7 6 5 3>")
+    .scale("C:blues")
+    .sound("square")
+    .octave(2)
+    .cutoff(500)
+    .resonance(12)
+    .distort(0.3)
+    .gain(0.55)
+    .decay(0.2)
+    .sustain(0.4)
+    .release(0.1)
+).cpm(75)

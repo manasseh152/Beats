@@ -1,0 +1,33 @@
+// Cat sections — A/B arrangement using cat() for contrasting sections
+cat(
+  stack(
+    s("bd ~ bd ~")
+      .gain(0.9),
+    s("~ sd ~ ~")
+      .gain(0.7),
+    s("hh*4")
+      .gain(0.4),
+    n("0 ~ 3 ~")
+      .scale("C:minor")
+      .sound("sawtooth")
+      .octave(3)
+      .cutoff(600)
+      .gain(0.4)
+  ),
+  stack(
+    s("bd [~ bd] sd [bd ~]")
+      .gain(0.9),
+    s("hh*8")
+      .gain(".5 .3 .6 .3 .5 .3 .6 .3"),
+    s("cp ~ cp:1 ~")
+      .gain(0.5),
+    n("0 3 5 7")
+      .scale("C:minor")
+      .sound("sawtooth")
+      .octave(3)
+      .cutoff(1200)
+      .gain(0.45)
+      .room(0.3)
+  )
+).bank("RolandTR808")
+  .cpm(100)

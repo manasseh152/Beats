@@ -1,0 +1,22 @@
+// Every-sometimes — probability and periodic transforms for evolving variation
+stack(
+  s("bd [~ bd] sd [~ bd:1]")
+    .sometimes(x => x.gain(0.5))
+    .every(4, fast(2)),
+  s("hh*8")
+    .gain(0.5)
+    .often(x => x.gain(0.3))
+    .every(3, rev),
+  s("cp/2")
+    .gain(0.6)
+    .rarely(x => x.fast(2)),
+  n("0 ~ 4 ~")
+    .scale("C:minor")
+    .sound("sawtooth")
+    .octave(3)
+    .cutoff(800)
+    .gain(0.4)
+    .every(4, rev)
+    .sometimes(x => x.fast(2))
+).bank("RolandTR909")
+  .cpm(115)

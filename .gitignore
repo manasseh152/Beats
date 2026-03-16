@@ -21,6 +21,7 @@ logs/
 
 # IDE
 .idea/
+.obsidian/
 .DS_Store
 
 # Audio samples (too large for git)

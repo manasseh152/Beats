@@ -1,0 +1,19 @@
+// Offset layers — .off() creates shimmering canons from a single melodic seed
+stack(
+  s("bd [~ bd] sd ~")
+    .bank("AkaiLinn"),
+  s("hh*4")
+    .bank("AkaiLinn")
+    .gain(0.45),
+  n("0 2 4 7 5 4 2 0")
+    .scale("C:minor")
+    .sound("triangle")
+    .octave(4)
+    .gain(0.4)
+    .cutoff(1800)
+    .off(0.125, x => x.gain(0.25).cutoff(900))
+    .off(0.25, x => x.gain(0.15).cutoff(500).pan(0.8))
+    .room(0.35)
+    .delay(0.15)
+    .delaytime(0.163)
+).cpm(92)
