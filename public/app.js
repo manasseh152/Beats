@@ -1,41 +1,21 @@
-let strudel = null;
-let repl = null;
 let currentTrack = "";
-let currentCode = "";
 
-// --- Strudel initialization (requires user gesture) ---
+// --- Strudel editor component ---
 
-async function initStrudel() {
-  if (repl) return;
+const repl = document.getElementById("repl");
 
-  const { StrudelMirror } = await import("@strudel/web");
-
-  repl = new StrudelMirror({
-    defaultOutput: "speaker",
-    prebake: async () => {
-      // Prebake loads default samples and functions
-    },
-    onError: (err) => showError(err.message || String(err)),
-    onWarning: (msg) => console.warn("[strudel]", msg),
-  });
-
-  // Wait for prebake to finish
-  await repl.prebake();
-}
-
-async function evaluate(code, forceNew = false) {
-  if (!repl) await initStrudel();
-  hideError();
-  try {
-    await repl.evaluate(code, forceNew);
-  } catch (err) {
-    showError(err.message || String(err));
-  }
-}
-
-function stop() {
-  if (repl) {
-    repl.stop();
+// The strudel-editor web component exposes .editor (StrudelMirror) once ready.
+// This helper retries until the editor is available.
+function withEditor(fn) {
+  if (repl.editor) {
+    fn(repl.editor);
+  } else {
+    const check = setInterval(() => {
+      if (repl.editor) {
+        clearInterval(check);
+        fn(repl.editor);
+      }
+    }, 50);
   }
 }
 
@@ -44,7 +24,6 @@ function stop() {
 const trackSelect = document.getElementById("track-select");
 const playBtn = document.getElementById("play-btn");
 const stopBtn = document.getElementById("stop-btn");
-const codeDisplay = document.getElementById("code-display").querySelector("code");
 const statusEl = document.getElementById("status");
 const errorEl = document.getElementById("error");
 
@@ -58,9 +37,8 @@ function hideError() {
 }
 
 function setTracks(tracks) {
-  // Preserve current selection
   const current = trackSelect.value;
-  trackSelect.innerHTML = '<option value="">— select track —</option>';
+  trackSelect.innerHTML = '<option value="">Select a track...</option>';
   for (const t of tracks) {
     const opt = document.createElement("option");
     opt.value = t;
@@ -72,19 +50,31 @@ function setTracks(tracks) {
   }
 }
 
-function displayCode(code) {
-  codeDisplay.textContent = code;
+function setEditorCode(code) {
+  hideError();
+  withEditor((ed) => ed.setCode(code));
 }
 
-// --- Controls ---
+// --- Transport controls ---
 
-playBtn.addEventListener("click", async () => {
-  if (currentCode) {
-    await evaluate(currentCode, true);
-  }
+playBtn.addEventListener("click", () => {
+  hideError();
+  withEditor((ed) => {
+    try {
+      ed.evaluate();
+      playBtn.classList.add("active");
+    } catch (err) {
+      showError(err.message || String(err));
+    }
+  });
 });
 
-stopBtn.addEventListener("click", () => stop());
+stopBtn.addEventListener("click", () => {
+  withEditor((ed) => {
+    ed.stop();
+    playBtn.classList.remove("active");
+  });
+});
 
 trackSelect.addEventListener("change", () => {
   const track = trackSelect.value;
@@ -104,14 +94,14 @@ function connect() {
   ws = new WebSocket(`${protocol}//${location.host}/_ws`);
 
   ws.addEventListener("open", () => {
-    statusEl.textContent = "Connected";
-    statusEl.className = "connected";
+    statusEl.querySelector(".status-text").textContent = "Connected";
+    statusEl.className = "status connected";
     clearTimeout(reconnectTimer);
   });
 
   ws.addEventListener("close", () => {
-    statusEl.textContent = "Disconnected";
-    statusEl.className = "disconnected";
+    statusEl.querySelector(".status-text").textContent = "Disconnected";
+    statusEl.className = "status disconnected";
     reconnectTimer = setTimeout(connect, 2000);
   });
 
@@ -133,12 +123,7 @@ function connect() {
 
       case "code":
         if (data.track === currentTrack) {
-          currentCode = data.code;
-          displayCode(data.code);
-          // Hot-swap: re-evaluate if already playing
-          if (repl?.started) {
-            evaluate(data.code, true);
-          }
+          setEditorCode(data.code);
         }
         break;
 

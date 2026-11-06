@@ -1,0 +1,69 @@
+// Bishu-style DnB / Dubstep hybrid — aggressive, dark, heavy drops
+// Created: 2026-03-16
+
+stack(
+  // DnB two-step kick — syncopated, punchy
+  s("bd ~ ~ ~ ~ ~ ~ bd ~ ~ ~ ~ ~ ~ ~ ~")
+    .bank("RolandTR909")
+    .gain(1)
+    .distort(0.15),
+
+  // snare — beats 2 and 4 with ghost notes
+  s("~ ~ ~ ~ sd:1 ~ ~ ~ ~ ~ sd:3 ~ sd:1 ~ ~ ~")
+    .bank("RolandTR909")
+    .gain("~ ~ ~ ~ .9 ~ ~ ~ ~ ~ .9 ~ .4 ~ ~ ~"),
+
+  // hi-hats — rapid 16ths with velocity groove
+  s("hh*16")
+    .bank("RolandTR909")
+    .gain(".5 .3 .7 .3 .5 .3 .8 .3 .5 .3 .7 .3 .5 .3 .8 .4")
+    .every(4, fast(2))
+    .sometimes(x => x.cutoff(3000)),
+
+  // open hat accents
+  s("~ ~ ~ oh ~ ~ ~ ~ ~ ~ ~ oh ~ ~ ~ ~")
+    .bank("RolandTR909")
+    .gain(0.45)
+    .decay(0.1),
+
+  // sub bass — heavy distorted reese
+  note("<f1 f1 eb1 f1>")
+    .sound("sawtooth")
+    .cutoff(200)
+    .resonance(8)
+    .distort(0.4)
+    .gain(0.75)
+    .attack(0.01)
+    .decay(0.2)
+    .sustain(0.6)
+    .release(0.1),
+
+  // mid bass — aggressive filtered stabs
+  note("f2 ~ [ab2 ~] ~ f2 ~ ~ eb2 ~ ~ f2 ~ ~ [g2 ab2] ~ ~")
+    .sound("sawtooth")
+    .cutoff(sine.range(400, 1800).slow(4))
+    .resonance(12)
+    .distort(0.3)
+    .gain(0.45)
+    .attack(0.005)
+    .decay(0.15)
+    .sustain(0.1)
+    .release(0.05)
+    .delay(0.15)
+    .delaytime(0.086)
+    .jux(rev),
+
+  // dark pad — slow-moving atmosphere
+  note("<[f3,ab3,c4] [eb3,g3,bb3]>")
+    .sound("triangle")
+    .cutoff(sine.range(600, 1400).slow(16))
+    .gain(0.2)
+    .attack(0.3)
+    .decay(0.5)
+    .sustain(0.4)
+    .release(0.8)
+    .room(0.6)
+    .roomsize(4)
+    .delay(0.25)
+    .delaytime(0.172)
+).cpm(174)
